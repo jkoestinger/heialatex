@@ -1,0 +1,16 @@
+\documentclass{heiaarticle}
+\usepackage[francais]{babel}
+
+% use \declare{test/} to create a new variable namespace
+% you can use the root namespace too if you want to
+% use \setvalue and \getvalue to manipulate data
+\setvalue{meta/author = An author}
+\setvalue{meta/class = A classroom}
+\setvalue{meta/title = A title}
+\setvalue{meta/course = A course}
+%\setvalue{meta/sectionformat = \large\raggedright}
+
+\begin{document}
+\buildtitle
+\section{Test}
+\end{document}
