@@ -6,6 +6,8 @@
 \LoadClass{article}
 
 % Packages loading
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[T1]{fontenc}
 \RequirePackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
 \RequirePackage{lastpage}
 \RequirePackage{pgfkeys}
@@ -60,6 +62,7 @@
 \title{\getvalue{meta/title}}
 \author{\getvalue{meta/author}\\\emph{\getvalue{meta/class}}}
 \date{\getvalue{meta/date}}
+
 
 % builds the document's beginning stuff
 \newcommand{\buildtitle}{%
