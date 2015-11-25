@@ -8,11 +8,14 @@
 % Packages loading
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[T1]{fontenc}
+\RequirePackage[francais]{babel}
 \RequirePackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
 \RequirePackage{lastpage}
 \RequirePackage{pgfkeys}
 \RequirePackage{fancyhdr}
 \RequirePackage{titlesec}
+\RequirePackage{xcolor}
+\RequirePackage{listings}
 
 
 % Commands for the key/value variables system
@@ -28,12 +31,15 @@
 % Initialization of several defaults variables
 \declare{}
 \declare{meta/}
+\declare{formatting/}
+\declare{formatting/listings/}
 \setvalue{meta/author = Unknown Author} % author name
 \setvalue{meta/class = Unknown Class} % author's classroom
 \setvalue{meta/date = \today} % date to display
 \setvalue{meta/title = Unknown Title} % title of the document
 \setvalue{meta/course = }
-\setvalue{meta/sectionformat = \large\scshape\raggedright}
+\setvalue{formatting/section = \large\scshape\raggedright}
+\setvalue{formatting/listings/defaultlanguage=Java}
 
 % Settings for page layouts
 \fancypagestyle{nostyle}{%
@@ -78,5 +84,97 @@
 }
 
 \titleformat{\section}{%
-	\getvalue{meta/sectionformat}
+	\getvalue{formatting/section}
 }{\textnormal{\thesection .}}{0.5em}{}[\titlerule]
+
+
+% Lstlistings styles
+
+\definecolor{codegreen}{rgb}{0,0.75,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.38,0,0.62}
+\definecolor{codewhite}{rgb}{1,1,1}
+\definecolor{codeblack}{rgb}{0,0,0}
+\definecolor{codeblue}{rgb}{0,0,0.8}
+ 
+\lstdefinestyle{code}{ % Style for coding template, default style
+    backgroundcolor=\color{codewhite},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{codeblue},
+    numberstyle=\color{black},
+    stringstyle=\color{codepurple},
+    basicstyle=\footnotesize\ttfamily,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2,
+    frame=lrbt,
+    %language=\getvalue{formatting/listings/defaultlanguage}
+}
+
+\lstdefinestyle{console}{ % Style for console commands
+    backgroundcolor=\color{codeblack},
+    basicstyle=\footnotesize\ttfamily\color{codewhite},
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,           
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2,
+    numbers=none,
+}
+
+\lstdefinestyle{console_inverse}{ % Style for console commands, alternative version
+    backgroundcolor=\color{codewhite},
+    basicstyle=\footnotesize\ttfamily\color{codeblack},
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,           
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2,
+    numbers=none,
+    frame=bt
+}
+
+\setvalue{formatting/listings/defaultstyle = code}
+
+% listing environments
+\lstnewenvironment{listing}
+	{		
+		\lstset{style=\getvalue{formatting/listings/defaultstyle}}
+	}
+	{}
+
+\newif\ifconsoleinverse
+\consoleinversetrue
+
+\newcommand{\switchconsolestyle}{%
+	\ifconsoleinverse
+		\consoleinversefalse
+	\else
+		\consoleinversetrue
+	\fi
+}
+
+\lstnewenvironment{console}
+	{
+		\ifconsoleinverse
+			\lstset{style=console_inverse}
+		\else
+			\lstset{style=console}
+		\fi
+	}
+	{
+		\lstset{style=\getvalue{formatting/listings/defaultstyle}}
+	}

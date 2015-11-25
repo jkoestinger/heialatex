@@ -1,17 +1,27 @@
 \documentclass{heiaarticle}
-\usepackage[francais]{babel}
 
 % use \declare{test/} to create a new variable namespace
 % you can use the root namespace too if you want to
 % use \setvalue and \getvalue to manipulate data
 \setvalue{meta/author = An author}
 \setvalue{meta/class = A classroom}
-\setvalue{meta/title = A title}
+\setvalue{meta/title = \Huge{A title}}
 \setvalue{meta/course = A course}
-%\setvalue{meta/sectionformat = \large\raggedright}
+%\setvalue{formatting/section = \large\raggedright}
 
+% If you want to use your own lststyle:
+%\setvalue{formatting/listings/default = yourlststyle}
+
+\lstset{language=Java}
 
 \begin{document}
 \buildtitle
 \section{Test}
+\begin{console}
+Ter
+\end{console}
+
+\begin{listing}
+public static int test(){return 5;}
+\end{listing}
 \end{document}
