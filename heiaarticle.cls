@@ -22,6 +22,15 @@
 \usetikzlibrary{matrix,calc}
 \shorthandon{;} 
 
+\RequirePackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=blue,
+    filecolor=blue,
+    linkcolor=blue,
+    urlcolor=blue
+}
+
 
 % Commands for the key/value variables system
 \newcommand{\setvalue}[1]{\pgfkeys{/variables/#1}}
@@ -43,7 +52,9 @@
 \setvalue{meta/date = \today} % date to display
 \setvalue{meta/title = Unknown Title} % title of the document
 \setvalue{meta/course = }
-\setvalue{formatting/section = \large\scshape\raggedright}
+\setvalue{formatting/section = \Large\raggedright}
+\setvalue{formatting/subsection = \large\raggedright}
+\setvalue{formatting/subsubsection = \raggedright}
 \setvalue{formatting/listings/defaultlanguage=Java}
 
 % Settings for page layouts
@@ -91,6 +102,14 @@
 \titleformat{\section}{%
 	\getvalue{formatting/section}
 }{\textnormal{\thesection .}}{0.5em}{}[\titlerule]
+
+\titleformat{\subsection}{%
+	\getvalue{formatting/subsection}
+}{\textnormal{\thesubsection .}}{0.5em}{}[]
+
+\titleformat{\subsubsection}{%
+	\getvalue{formatting/subsubsection}
+}{\textnormal{\thesubsubsection .}}{0.5em}{}[]
 
 
 % Lstlistings styles

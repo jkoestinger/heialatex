@@ -7,7 +7,11 @@
 \setvalue{meta/class = A classroom}
 \setvalue{meta/title = \Huge{A title}}
 \setvalue{meta/course = A course}
-%\setvalue{formatting/section = \large\raggedright}
+
+% Uncomment if you wish to have small caps style for your titles
+%\setvalue{formatting/section = \Large\scshape\raggedright}
+%\setvalue{formatting/subsection = \large\scshape\raggedright}
+%\setvalue{formatting/subsubsection = \scshape\raggedright}
 
 % If you want to use your own lststyle:
 %\setvalue{formatting/listings/default = yourlststyle}
@@ -17,6 +21,8 @@
 \begin{document}
 \buildtitle
 \section{Test}
+\subsection{TestSub}
+\subsubsection{TestSubSub}
 \begin{console}
 Ter
 \end{console}
